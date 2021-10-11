@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+
 const ListGroup = (props) => {
     const { items, textProperty, valueProperty, onItemsSelect, selectedItem} = props;
 
@@ -6,7 +6,7 @@ const ListGroup = (props) => {
         {items.map( item => (
         <li 
             key={item[valueProperty]} 
-            className={item === selectedItem ? "list-group-item active" : "list-group-item"}
+            className={item === selectedItem ? "list-group-item active" : "list-group-item clickable"}
             onClick={() => onItemsSelect(item)}
             >{item[textProperty]}</li>
         ))}
