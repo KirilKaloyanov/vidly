@@ -1,5 +1,4 @@
-import { divide } from 'lodash';
-import React, { Component } from 'react';
+import React from 'react';
 
 const MovieForm = ({ match, history }) => {
     return ( 

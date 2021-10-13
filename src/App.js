@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import MovieForm from "./components/movieForm"
 import Movies from "./components/movies";
 import Customers from './components/customers';
@@ -6,7 +6,7 @@ import Rentals from './components/rentals';
 import NotFound from './components/common/not-found';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import NavBar from './components/common/navBar';
-import LoginForm from "./components/loginForm";
+import LoginForm from "./components/loginForm"; 
 import './App.css';
 
 function App() {
