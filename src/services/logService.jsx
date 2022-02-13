@@ -1,4 +1,4 @@
-function init() {};
+/*function init() {};
 
 function log(error) {
     console.log(error); 
@@ -7,5 +7,5 @@ function log(error) {
 export default {
     init,
     log
-};
+};*/
 

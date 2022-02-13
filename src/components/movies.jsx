@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import MoviesTable from "./moviesTable";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/listGroup";
-import { getMovies } from "../services/fakeMovieService";
+import { getMovies, likeMovie, deleteMovies } from "../services/movieService";
 import { paginate } from "../utils/paginate";
-import { getGenres } from '../services/fakeGenreService';
+import { getGenres } from '../services/genreService';
 import _ from "lodash";
 
 
@@ -19,22 +19,27 @@ export default class Movies extends Component {
         sortColumn: {path: 'title', order: 'asc'}
     }
 
-    componentDidMount() {
-        const genres = [{ name: 'All Genres', _id: ''}, ...getGenres()];
-        this.setState({movies: getMovies(), genres});
+    async componentDidMount() {
+        const { data } = await getGenres();
+        const genres = [{ name: 'All Genres', _id: ''}, ...data];
+        const { data: movies} = await getMovies();
+        this.setState({movies, genres});
     };
 
-    handleDelete = movie => {
+    handleDelete = async movie => {
         const movies = this.state.movies.filter(m => m._id !== movie._id);
         this.setState({movies});
+        await deleteMovies(movie._id);
     }
 
-    handleLike = (movie) => {
+    handleLike = async (movie) => {
         const movies = [...this.state.movies];
-        const index = movies.indexOf(movie);
-        movies[index] = {...movies[index]};
-        movies[index].liked = !movies[index].liked;
+
+        let myMovie = movies.find(g => g === movie);
+        const index = movies.findIndex(m => m === myMovie);
+        if (movies[index].liked === true) {movies[index].liked = false} else {movies[index].liked = true};
         this.setState( {movies});
+        await likeMovie(movie);
     };
 
     handlePageChange = page => {
@@ -65,6 +70,7 @@ export default class Movies extends Component {
     render() { 
         const { length: count } = this.state.movies;
         const { pageSize, currentPage, sortColumn } = this.state;
+        const { user } = this.props;
 
         if (count === 0) return <p>There are no movies.</p>
 
@@ -75,16 +81,17 @@ export default class Movies extends Component {
             <div className="col-4">
                 <ListGroup	
                     items={this.state.genres} 
+                    valueProperty={this.state.genres._id}
                     selectedItem={this.state.selectedGenre}
                     onItemsSelect={this.handleGenreSelect}/>
             </div>
             <div className="col">
-                <Link 
+                {user && (<Link 
                     to="/movies/new"
                     className='btn btn-primary'
                     style={{marginBottom: 20}}
                 >New Movie
-                </Link>
+                </Link>)}
                 <p>There are {totalCount} movies</p>
                 <MoviesTable 
                     movies={movies} 

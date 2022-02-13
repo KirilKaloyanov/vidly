@@ -1,7 +1,38 @@
 import React from 'react';
 
 const Retnals = () => {
-    return ( <h1>Rentals</h1> );
+    return ( 
+<div>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    <h1>Rentals</h1>
+    </div>
+     );
 }
  
 export default Retnals;
